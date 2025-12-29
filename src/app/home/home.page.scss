@@ -1,0 +1,122 @@
+ion-content {
+  --background: transparent;
+}
+
+/* Background */
+.background {
+  position: absolute;
+  inset: 0;
+  background: url('/assets/background.jpeg') center / cover no-repeat;
+  z-index: -1;
+}
+
+/* Logo */
+.logo {
+  position: absolute;
+  top: 60px;
+  width: 100%;
+  text-align: center;
+
+  img {
+    width: 200px;
+  }
+}
+
+/* Play */
+.center-controls {
+  position: absolute;
+  top: 38vh;
+  width: 100%;
+  text-align: center;
+}
+
+.play-btn {
+  font-size: 200px;
+  color: white;
+}
+
+/* Loader */
+.loader {
+  width: 200px;
+  height: 200px;
+  border: 8px solid #03C3D4;
+  border-radius: 50%;
+  border-top-color: transparent;
+  animation: spin 1s linear infinite;
+  margin: auto;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Now Playing */
+.now-playing {
+  position: absolute;
+  bottom: 90px;
+  left: 16px;
+  right: 16px;
+  background: rgba(255,255,255,0.85);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  padding: 10px;
+}
+
+.album {
+  width: 70px;
+  height: 70px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.info {
+  margin-left: 12px;
+}
+
+.on-air {
+  background: red;
+  color: white;
+  font-size: 12px;
+  padding: 2px 6px;
+  border-radius: 4px;
+  display: inline-block;
+  margin-bottom: 4px;
+  
+  animation: pulse 2.5s infinite;
+}
+
+.song-title {
+  font-size: 18px;
+  color: #333;
+}
+
+/* Social */
+.social {
+  position: absolute;
+  bottom: 20px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 22px;
+
+  img {
+    width: 36px;
+
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(230, 0, 35, 0.7);
+  }
+  50% {
+    transform: scale(1.08);
+    box-shadow: 0 0 0 12px rgba(230, 0, 35, 0);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(230, 0, 35, 0);
+  }
+}

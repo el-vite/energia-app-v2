@@ -1,0 +1,47 @@
+<ion-content fullscreen>
+
+  <!-- Background -->
+  <div class="background"></div>
+
+  <!-- Logo -->
+  <div class="logo">
+    <img src="assets/logo.png" />
+  </div>
+
+  <!-- Play / Pause -->
+  <div class="center-controls">
+
+    <div *ngIf="radio.isLoading" class="loader"></div>
+
+    <ion-icon
+      *ngIf="!radio.isLoading"
+      [name]="radio.isPlaying ? 'pause' : 'play'"
+      class="play-btn"
+      (click)="toggle()">
+    </ion-icon>
+
+  </div>
+
+  <!-- Now Playing -->
+  <div class="now-playing" *ngIf="currentSong">
+
+    <img
+      class="album"
+      [src]="currentCover || 'assets/default-album.jpg'" 
+      (error)="onImageError($event)"/>
+
+    <div class="info">
+      <span class="on-air">ON AIR</span>
+      <div class="song-title">{{ currentSong }}</div>
+    </div>
+
+  </div>
+
+  <!-- Social -->
+  <div class="social">
+    <img src="assets/ig.png">
+    <img src="assets/www.png">
+    <img src="assets/fb.png">
+  </div>
+
+</ion-content>
