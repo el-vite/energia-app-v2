@@ -20,20 +20,37 @@ export class HomePage implements OnInit, OnDestroy {
   currentSong = '';
   currentCover = '';
   private intervalId: any;
+  volume = 0.8;
+
 
   constructor(
     public radio: RadioService,
     private http: HttpClient
   ) {}
+ 
 
   ngOnInit() {
     this.loadStreamInfo();
     this.intervalId = setInterval(() => this.loadStreamInfo(), 8000);
+
+    this.toggle();
   }
 
   ngOnDestroy() {
     clearInterval(this.intervalId);
   }
+
+onVolumeChange(event: any) {
+  this.volume = event.detail.value;
+  this.radio.setVolume(this.volume); // o como lo manejes internamente
+}
+
+setVolume(value: number) {
+  this.volume = value;
+  this.radio.setVolume(this.volume);
+}
+
+
 
   toggle() {
     this.radio.isPlaying ? this.radio.pause() : this.radio.play();

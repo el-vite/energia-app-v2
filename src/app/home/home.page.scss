@@ -1,44 +1,74 @@
 ion-content {
   --background: transparent;
+  position: relative;
 }
 
-/* Background */
+/* ================= BACKGROUND ================= */
 .background {
   position: absolute;
   inset: 0;
   background: url('/assets/background.jpeg') center / cover no-repeat;
   z-index: -1;
+  transform: rotate(180deg);
 }
 
-/* Logo */
+.background2 {
+
+  background: url('/assets/fondo2.jpeg') center / cover no-repeat;
+
+
+}
+
+/* ================= LOGO ================= */
 .logo {
   position: absolute;
-  top: 60px;
+  top: calc(env(safe-area-inset-top) + 60px);
   width: 100%;
   text-align: center;
 
   img {
     width: 200px;
+    transition: transform 0.4s ease, filter 0.4s ease;
   }
 }
 
-/* Play */
+.logo.playing img {
+  animation: logoPulse 2.2s ease-in-out infinite;
+  filter: drop-shadow(0 0 18px rgba(0, 151, 178, 0.75));
+}
+
+@keyframes logoPulse {
+  0% {
+    transform: scale(1);
+    filter: drop-shadow(0 0 10px rgba(0, 151, 178, 0.4));
+  }
+  50% {
+    transform: scale(1.08);
+    filter: drop-shadow(0 0 28px rgba(0, 151, 178, 0.9));
+  }
+  100% {
+    transform: scale(1);
+    filter: drop-shadow(0 0 10px rgba(0, 151, 178, 0.4));
+  }
+}
+
+/* ================= PLAY ================= */
 .center-controls {
   position: absolute;
-  top: 38vh;
+  top: 43vh;
   width: 100%;
   text-align: center;
 }
 
 .play-btn {
-  font-size: 200px;
-  color: white;
+  font-size: 100px;
+  color: #00C2D6;
 }
 
-/* Loader */
+/* ================= LOADER ================= */
 .loader {
-  width: 200px;
-  height: 200px;
+  width: 100px;
+  height: 100px;
   border: 8px solid #03C3D4;
   border-radius: 50%;
   border-top-color: transparent;
@@ -47,16 +77,18 @@ ion-content {
 }
 
 @keyframes spin {
-  to { transform: rotate(360deg); }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
-/* Now Playing */
+/* ================= NOW PLAYING ================= */
 .now-playing {
   position: absolute;
-  bottom: 90px;
+  bottom: calc(env(safe-area-inset-bottom) + 90px);
   left: 16px;
   right: 16px;
-  background: rgba(255,255,255,0.85);
+  background: rgba(255, 255, 255, 0.85);
   border-radius: 8px;
   display: flex;
   align-items: center;
@@ -81,8 +113,7 @@ ion-content {
   padding: 2px 6px;
   border-radius: 4px;
   display: inline-block;
-  margin-bottom: 4px;
-  
+  margin-bottom: 10px;
   animation: pulse 2.5s infinite;
 }
 
@@ -91,25 +122,10 @@ ion-content {
   color: #333;
 }
 
-/* Social */
-.social {
-  position: absolute;
-  bottom: 20px;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  gap: 22px;
-
-  img {
-    width: 36px;
-
-  }
-}
-
 @keyframes pulse {
   0% {
     transform: scale(1);
-    box-shadow: 0 0 0 0 rgba(230, 0, 35, 0.7);
+    box-shadow: 0 0 0 0 rgba(230, 0, 35, 0.1);
   }
   50% {
     transform: scale(1.08);
@@ -119,4 +135,139 @@ ion-content {
     transform: scale(1);
     box-shadow: 0 0 0 0 rgba(230, 0, 35, 0);
   }
+}
+
+/* ================= SOCIAL ================= */
+.social {
+  position: absolute;
+  bottom: calc(env(safe-area-inset-bottom) + 20px);
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 22px;
+
+  img {
+    width: 36px;
+  }
+}
+
+/* ================= VOLUME ================= */
+.volume-container {
+  position: absolute;
+  bottom: calc(env(safe-area-inset-bottom) + 300px);
+  left: 50%;
+  transform: translateX(-50%);
+  width: 260px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.volume-icon {
+  font-size: 33px;
+  color: white;
+  transition: color 0.3s ease, transform 0.2s ease;
+
+  &:active {
+    transform: scale(1.2);
+    color: #0097B2;
+  }
+}
+
+.volume-range {
+  flex: 1;
+  --bar-background: rgba(255, 255, 255, 0.3);
+  --bar-background-active: #0097B2;
+  --knob-background: white;
+  --knob-size: 25px;
+  --pin-background: #0097B2;
+  --pin-color: white;
+}
+
+.volume-range::part(knob) {
+  transition: transform 0.2s ease, background 0.3s ease;
+}
+
+.volume-range:active::part(knob) {
+  transform: scale(1.3);
+  background: #0097B2;
+}
+
+/* ================= TOOLBARS ================= */
+.main-toolbar {
+  --background: rgba(0, 151, 178, 0.95);
+  --color: white;
+}
+
+.main-menu {
+  --background: rgba(0, 151, 178, 0.95);
+  --color: white;
+}
+
+/* ================= MENU ================= */
+.menu-toolbar {
+  --background: linear-gradient(135deg, #0097B2, #00C2D6);
+  --color: white;
+  min-height: 160px;
+}
+
+.menu-header {
+  height: 160px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.menu-header img {
+  width: 90px;
+  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.25));
+}
+
+.menu-label{
+
+color: #333
+
+}
+
+
+.menu-header span {
+  font-size: 14px;
+  letter-spacing: 2px;
+  font-weight: 600;
+}
+
+ion-menu ion-content {
+  --background: #f4f9fb;
+}
+
+ion-menu ion-list {
+  padding: 20px;
+}
+
+ion-menu ion-item {
+  --background: white;
+  --border-radius: 12px;
+  margin-bottom: 12px;
+  box-shadow: 0 6px 16px rgba(0, 151, 178, 0.15);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+
+  ion-icon {
+    color: #0097B2;
+    font-size: 38px;
+  }
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 22px rgba(0, 151, 178, 0.25);
+  }
+
+  &:active {
+    transform: scale(0.97);
+  }
+}
+
+ion-menu ion-item::part(native) {
+  --ripple-color: rgba(0, 151, 178, 0.25);
 }

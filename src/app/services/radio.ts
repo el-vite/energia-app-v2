@@ -25,6 +25,12 @@ export class RadioService {
     }
   }
 
+
+  setVolume(value: number) {
+  this.audio.volume = value; // 0.0 a 1.0
+}
+
+
   pause() {
     this.audio.pause();
     this.isPlaying = false;

@@ -1,12 +1,62 @@
-<ion-content fullscreen>
+<ion-menu side="start" contentId="main-content" >
+  <ion-header>
+<ion-toolbar class="menu-toolbar">
+  <div class="menu-header">
+    <img src="assets/logo.png" alt="Energia Radio" />
+    <span>ENERGÍA RADIO</span>
+  </div>
+</ion-toolbar>
+
+
+  </ion-header>
+
+  <ion-content >
+    <ion-list class="background2">
+
+      <ion-item button href="https://instagram.com/energiafmec" target="_blank">
+        <ion-icon name="logo-instagram" slot="start"></ion-icon>
+        <ion-label class="menu-label">Instagram</ion-label>
+        
+      </ion-item>
+
+      <ion-item button href="https://facebook.com/energiafmec" target="_blank">
+        <ion-icon name="logo-facebook" slot="start"></ion-icon>
+        <ion-label class="menu-label">Facebook</ion-label>
+      </ion-item>
+
+      <ion-item button href="https://energiafm.net" target="_blank">
+        <ion-icon name="globe-outline" slot="start"></ion-icon>
+        <ion-label class="menu-label">Sitio Web</ion-label>
+      </ion-item>
+
+
+
+
+
+    </ion-list>
+  </ion-content>
+</ion-menu>
+
+<ion-content fullscreen id="main-content">
+
+ <ion-header>
+    <ion-toolbar class="main-toolbar">
+      <ion-buttons slot="start">
+        <ion-menu-button class="main-menu"></ion-menu-button>
+      </ion-buttons>
+      <ion-title>Radio Online</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
 
   <!-- Background -->
   <div class="background"></div>
 
   <!-- Logo -->
-  <div class="logo">
-    <img src="assets/logo.png" />
-  </div>
+<div class="logo" [class.playing]="radio.isPlaying">
+  <img src="assets/logo.png" />
+</div>
+
 
   <!-- Play / Pause -->
   <div class="center-controls">
@@ -21,6 +71,32 @@
     </ion-icon>
 
   </div>
+
+<!-- Volume Control -->
+<div class="volume-container">
+  <ion-icon
+    [name]="volume === 0 ? 'volume-mute' : 'volume-low'"
+    class="volume-icon"
+    (click)="setVolume(0)">
+  </ion-icon>
+
+  <ion-range
+    min="0"
+    max="1"
+    step="0.01"
+    [value]="volume"
+    (ionChange)="onVolumeChange($event)"
+    class="volume-range">
+  </ion-range>
+
+  <ion-icon
+    name="volume-high"
+    class="volume-icon"
+    (click)="setVolume(1)">
+  </ion-icon>
+</div>
+
+
 
   <!-- Now Playing -->
   <div class="now-playing" *ngIf="currentSong">
@@ -38,10 +114,10 @@
   </div>
 
   <!-- Social -->
-  <div class="social">
+  <!-- <div class="social">
     <img src="assets/ig.png">
     <img src="assets/www.png">
     <img src="assets/fb.png">
-  </div>
+  </div> -->
 
 </ion-content>
