@@ -12,11 +12,24 @@ ion-content {
   transform: rotate(180deg);
 }
 
-.background2 {
+.menu-content {
+  --background: #f4f9fb;
+}
 
+/* Imagen decorativa debajo del logo */
+.menu-image {
+  height: 370px;
+  margin: 12px 16px 20px;
+  border-radius: 14px;
   background: url('/assets/fondo2.jpeg') center / cover no-repeat;
+  box-shadow: 0 8px 18px rgba(0, 151, 178, 0.25);
+}
 
-
+/* Ajustes opcionales de ítems */
+ion-item {
+  --background: white;
+  --border-radius: 12px;
+  margin-bottom: 12px;
 }
 
 /* ================= LOGO ================= */
@@ -206,10 +219,12 @@ ion-content {
 
 /* ================= MENU ================= */
 .menu-toolbar {
-  --background: linear-gradient(135deg, #0097B2, #00C2D6);
+  --background:  #ffffff;
   --color: white;
   min-height: 160px;
 }
+
+
 
 .menu-header {
   height: 160px;
@@ -221,7 +236,7 @@ ion-content {
 }
 
 .menu-header img {
-  width: 90px;
+  width: 150px;
   filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.25));
 }
 
